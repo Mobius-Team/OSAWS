@@ -203,7 +203,7 @@
 			$assetTemporary = isset( $sxe->Temporary );
 			$assetData = base64_decode( $sxe->Data );
 			
-			include_once "typearrays.php";
+			include_once "includes/typearrays.php";
 
 			// Create connection
 			$conn = new mysqli(SQLServerName, SQLUserName, SQLPassword, SQLDatabase);
