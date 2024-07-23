@@ -16,7 +16,7 @@ This provides a centralised place for clients to retrieve LSLSyntax XMLs, instea
 
 To setup OSAWS, start by copying the OSAWS folder to your www directory.
 
-In the includes directory of OSAWS there is a file named `srconfig.php`. In this file you need to specify your assets directory and enter the SQL credentials you want OSAWS to use.
+In the includes directory of OSAWS there is a file named `config.php`. In this file you need to specify your assets directory and enter the SQL credentials you want OSAWS to use.
 
 OSAWS needs PHP and PHP-MySQL to run. It also needs XMLRPC to be enabled in your PHP config for the avatar picker (for now).
 
