@@ -23,7 +23,7 @@
 		"link_f_id" => 25,
 		"mesh_id" => 49,
 		"settings_id" => 56,
-		"material_id" => 57
+		"material_id" => 57,
 	);
 	
 	$asset_type_to_content_type = array(
