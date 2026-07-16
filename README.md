@@ -88,6 +88,88 @@ You will need to configure your web service for these services. I personally pre
 ```
 </details>
 
+<details>
+  <summary>Nginx Config Example</summary>
+     
+```
+# OSAWS - Avatar Picker
+server {
+    listen 80;
+    server_name avatarpicker.main.examplegrid.com;
+    root /var/www/osaws;
+
+    index avatarpicker.php;
+
+    location / {
+        try_files $uri $uri/ /avatarpicker.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+
+# OSAWS - Viewer Asset
+server {
+    listen 80;
+    server_name viewerasset.main.examplegrid.com;
+    root /var/www/osaws;
+
+    index viewerasset.php;
+
+    location / {
+        try_files $uri $uri/ /viewerasset.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+
+# OSAWS - FS Assets
+server {
+    listen 80;
+    server_name assets.main.examplegrid.com;
+    root /var/www/osaws;
+
+    index fsassets.php;
+
+    location / {
+        try_files $uri $uri/ /fsassets.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+
+# OSAWS - LSL Syntax
+server {
+    listen 80;
+    server_name lslsyntax.main.examplegrid.com;
+    root /var/www/osaws;
+
+    index lslsyntax.php;
+
+    location / {
+        try_files $uri $uri/ /lslsyntax.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+```
+</details>
+
 When setting up the FSAssets script, you need to make sure it has read and write access to your assets directory.
 
 ## Configuring your regions
