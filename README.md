@@ -5,7 +5,7 @@ OpenSim Advanced Web Services, more commonly known as OSAWS, is a (small) collec
 ## OSAWS includes the following:
 #### FSAssets
 This provides a faster alternative for the region to fetch assets from the database, instead of making it go through the ROBUST.
-#### ViewerAsset
+#### ViewerAssets
 A region that supports external ViewerAsset can forward a user's asset request to this script so they can directly fetch the asset from the ROBUST, instead of the region fetching the asset and handing it to the user.
 #### AvatarPicker
 The AvatarPicker is an XMLRPC (for now) handler for quickly retrieving avatar picker results from the ROBUST. This way the region simply forwards the search queary to the script, processes the results, and forwards them to the user.
@@ -43,16 +43,16 @@ You will need to configure your web service for these services. I personally pre
 
 <VirtualHost *:80>
 	DocumentRoot /var/www/osaws
-	ServerName viewerasset.main.examplegrid.com
+	ServerName viewerassets.main.examplegrid.com
 
 	<Directory /var/www/osaws>
 		DirectoryIndex disabled
-		DirectoryIndex viewerasset.php
+		DirectoryIndex viewerassets.php
 
 		RewriteEngine on
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME} !-d
-		RewriteRule . viewerasset.php [L]
+		RewriteRule . viewerassets.php [L]
 	</Directory>
 </VirtualHost>
 
@@ -114,13 +114,13 @@ server {
 # OSAWS - Viewer Asset
 server {
     listen 80;
-    server_name viewerasset.main.examplegrid.com;
+    server_name viewerassets.main.examplegrid.com;
     root /var/www/osaws;
 
-    index viewerasset.php;
+    index viewerassets.php;
 
     location / {
-        try_files $uri $uri/ /viewerasset.php?$query_string;
+        try_files $uri $uri/ /viewerassets.php?$query_string;
     }
 
     location ~ \.php$ {
@@ -178,7 +178,7 @@ To make your regions use the FSAssets script you need to set your `AssetServiceU
 
 To have your users retrieve their LSLSyntax XMLs from the LSLSyntax script, set `ExternalSyntaxURL` to its URL in the `LSLSyntax` section of your config. e.g. `ExternalSyntaxURL = "lslsyntax.main.examplegrid.com"`
 
-To have your regions forward asset requests from clients to the ViewerAsset script, set `ExternalViewerAssetsURL` to its URL in the `ClientStack.LindenCaps` of your config. e.g. `ExternalViewerAssetsURL = "http://viewerasset.main.examplegrid.com"`
+To have your regions forward asset requests from clients to the ViewerAsset script, set `ExternalViewerAssetsURL` to its URL in the `ClientStack.LindenCaps` of your config. e.g. `ExternalViewerAssetsURL = "http://viewerassets.main.examplegrid.com"`
 
 To have your region use the AvatarPicker script, set the `ExternalAvatarPickerURL` to its URL in the `AvatarPicker` section of your config. e.g. `ExternalAvatarPickerURL = "http://avatarpicker.main.examplegrid.com"`
 
